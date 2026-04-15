@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Leadership Code · KIN Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gray-50:  #F8F8F6;
+    --gray-100: #F0F0EC;
+    --gray-200: #E4E4DE;
+    --gray-300: #C8C8C0;
+    --gray-400: #9A9A90;
+    --gray-500: #6E6E64;
+    --gray-600: #4A4A42;
+    --gray-900: #1A1A16;
+    --green-50:  #EDF4EF;
+    --green-100: #C8DFC D;
+    --green-200: #8CBF96;
+    --green-500: #2D6E42;
+    --green-700: #1A4A2A;
+    --green-900: #0D2A18;
+    --white: #FAFAF8;
+    --ink: #1A1A16;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 64px;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 16px; }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 600;
+    color: var(--green-700); letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-divider { width: 1px; height: 20px; background: var(--gray-300); }
+  .nav-sub {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gray-400);
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--gray-500); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green-700); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    background: var(--gray-50);
+    position: relative; overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px 80px 64px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-right {
+    background: var(--green-700);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 64px;
+    position: relative; overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 41px
+    );
+  }
+  .hero-right-num {
+    position: absolute; top: 60px; right: 64px;
+    font-family: 'Playfair Display', serif;
+    font-size: 200px; font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    line-height: 1; pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--green-500);
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--green-500); }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 600; line-height: 1.05;
+    color: var(--ink); letter-spacing: -0.01em;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero-title em { font-style: italic; color: var(--green-700); }
+
+  .hero-rule {
+    width: 60px; height: 2px;
+    background: var(--green-500);
+    margin: 32px 0;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-body {
+    font-size: 16px; font-weight: 300; line-height: 1.85;
+    color: var(--gray-500); max-width: 440px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-body strong { color: var(--gray-600); font-weight: 500; }
+
+  .hero-cta {
+    margin-top: 48px; display: flex; gap: 16px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .btn-green {
+    padding: 14px 36px;
+    background: var(--green-700); color: var(--white);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none; border: none;
+    cursor: pointer; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-green:hover { background: var(--green-900); transform: translateY(-1px); }
+  .btn-outline-green {
+    padding: 14px 36px;
+    background: transparent; color: var(--green-700);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    border: 1.5px solid var(--green-200); cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-outline-green:hover { border-color: var(--green-700); transform: translateY(-1px); }
+
+  /* RIGHT SIDE PRINCIPLES LIST */
+  .hero-principles {
+    position: relative; z-index: 1;
+    list-style: none; display: flex; flex-direction: column; gap: 0;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-principle-item {
+    display: flex; align-items: center; gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    cursor: default;
+    transition: padding-left 0.3s;
+  }
+  .hero-principle-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+  .hero-principle-item:hover { padding-left: 8px; }
+  .principle-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: rgba(255,255,255,0.3);
+    min-width: 28px;
+  }
+  .principle-arabic {
+    font-size: 14px; color: rgba(255,255,255,0.35);
+    min-width: 80px; text-align: right;
+    font-style: italic;
+  }
+  .principle-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 500;
+    color: rgba(255,255,255,0.88); flex: 1;
+  }
+
+  .hero-right-label {
+    position: absolute; top: 64px; left: 64px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: rgba(255,255,255,0.3);
+    display: flex; align-items: center; gap: 10px;
+    z-index: 1;
+  }
+  .hero-right-label::before { content: ''; display: block; width: 20px; height: 1px; background: rgba(255,255,255,0.3); }
+
+  /* INTRO BAND */
+  .intro-band {
+    background: var(--white);
+    padding: 80px 64px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .intro-band-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 80px;
+    align-items: center;
+  }
+  .intro-band-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--green-500);
+    margin-bottom: 16px;
+  }
+  .intro-band-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 500; color: var(--ink);
+    line-height: 1.2;
+  }
+  .intro-band-heading em { font-style: italic; color: var(--green-700); }
+  .intro-band-body {
+    font-size: 16px; font-weight: 300; line-height: 1.9;
+    color: var(--gray-500);
+  }
+  .intro-band-body strong { color: var(--gray-600); font-weight: 500; }
+
+  /* PRINCIPLES */
+  .principles-section {
+    background: var(--gray-50);
+    padding: 100px 64px;
+  }
+  .principles-inner { max-width: 1100px; margin: 0 auto; }
+
+  .principles-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 64px; padding-bottom: 32px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .principles-header-left {}
+  .principles-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--green-500); margin-bottom: 12px;
+  }
+  .principles-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 600; color: var(--ink); line-height: 1.1;
+  }
+  .principles-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px; font-weight: 700;
+    color: var(--gray-200); line-height: 1;
+  }
+
+  /* PRINCIPLE CARD */
+  .principle-card {
+    background: var(--white);
+    display: grid; grid-template-columns: 280px 1fr;
+    margin-bottom: 2px;
+    transition: box-shadow 0.3s;
+    overflow: hidden;
+  }
+  .principle-card:hover { box-shadow: 0 4px 32px rgba(0,0,0,0.06); }
+
+  .principle-card-left {
+    background: var(--green-700);
+    padding: 48px 40px;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .principle-card-left::after {
+    content: attr(data-num);
+    position: absolute; bottom: -20px; right: -10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 120px; font-weight: 700;
+    color: rgba(255,255,255,0.05);
+    line-height: 1; pointer-events: none;
+  }
+  .principle-card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.15em;
+  }
+  .principle-card-arabic-word {
+    font-size: 28px; color: rgba(255,255,255,0.9);
+    line-height: 1; margin-bottom: 4px;
+    font-style: italic;
+  }
+  .principle-card-transliteration {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+  }
+
+  .principle-card-right {
+    padding: 48px 52px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .principle-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 600; color: var(--ink);
+    line-height: 1.1; margin-bottom: 20px;
+  }
+  .principle-card-original {
+    font-size: 13px; font-weight: 300; line-height: 1.8;
+    color: var(--gray-400); margin-bottom: 24px;
+    font-style: italic;
+    padding-left: 16px;
+    border-left: 2px solid var(--gray-200);
+  }
+  .principle-card-body {
+    font-size: 15px; font-weight: 300; line-height: 1.85;
+    color: var(--gray-500);
+  }
+  .principle-card-body strong { color: var(--ink); font-weight: 500; }
+
+  /* LEADERSHIP APPLICATION */
+  .application-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 24px;
+    padding: 8px 16px;
+    background: var(--green-50);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+    color: var(--green-700);
+  }
+  .application-tag::before { content: '→'; }
+
+  /* REFLECTION SECTION */
+  .reflection-section {
+    background: var(--green-700);
+    padding: 100px 64px;
+  }
+  .reflection-inner { max-width: 1100px; margin: 0 auto; }
+  .reflection-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .reflection-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: rgba(255,255,255,0.4); }
+  .reflection-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 600; color: var(--white);
+    line-height: 1.1; margin-bottom: 64px;
+  }
+  .reflection-title em { font-style: italic; opacity: 0.6; }
+
+  .reflection-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+  }
+  .reflection-item {
+    background: rgba(255,255,255,0.05);
+    padding: 36px 28px;
+    transition: background 0.2s;
+  }
+  .reflection-item:hover { background: rgba(255,255,255,0.09); }
+  .reflection-item-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.3); margin-bottom: 20px;
+  }
+  .reflection-item-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 500;
+    color: rgba(255,255,255,0.88); line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  .reflection-item-sub {
+    font-size: 12px; font-weight: 300; line-height: 1.7;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* CLOSING */
+  .closing-section {
+    background: var(--white);
+    padding: 120px 64px;
+    text-align: center;
+    border-top: 1px solid var(--gray-200);
+  }
+  .closing-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--green-500);
+    margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .closing-eyebrow::before, .closing-eyebrow::after { content: ''; display: block; width: 40px; height: 1px; background: var(--green-200); }
+  .closing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 600; color: var(--ink); line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .closing-title em { font-style: italic; color: var(--green-700); }
+  .closing-body {
+    font-size: 17px; font-weight: 300; line-height: 1.85;
+    color: var(--gray-500); max-width: 600px; margin: 0 auto 48px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--gray-900);
+    padding: 40px 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 600;
+    color: rgba(255,255,255,0.4); letter-spacing: 0.05em;
+  }
+  .footer-copy {
+    font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.2);
+  }
+  .footer-credit {
+    font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.2);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 60px 24px; }
+    .intro-band { padding: 60px 24px; }
+    .intro-band-inner { grid-template-columns: 1fr; gap: 32px; }
+    .principles-section { padding: 72px 24px; }
+    .principle-card { grid-template-columns: 1fr; }
+    .principle-card-left { padding: 36px 32px; flex-direction: row; align-items: center; gap: 24px; }
+    .reflection-section { padding: 72px 24px; }
+    .reflection-grid { grid-template-columns: 1fr 1fr; }
+    .closing-section { padding: 80px 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
+    .principles-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+  @media (max-width: 600px) {
+    .reflection-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <a class="nav-logo" href="#">The Leadership Code</a>
+    <div class="nav-divider"></div>
+    <span class="nav-sub">KIN Home · Leadership</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#principles">The 5 Principles</a></li>
+    <li><a href="#reflection">Reflection</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">AD Call · KIN Home Leadership</div>
+    <h1 class="hero-title">5 Timeless<br>Principles For<br><em>Building</em><br>Great Teams</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-body">
+      These principles built civilizations centuries before we had org charts, KPIs, or management consultants.
+      They were discovered not in boardrooms — but in deserts, on boats, and in open courtyards.
+      <strong>The best leaders in the world have always known them.</strong>
+    </p>
+    <div class="hero-cta">
+      <a href="#principles" class="btn-green">The 5 Principles</a>
+      <a href="#reflection" class="btn-outline-green">Leadership Reflection</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-label">Five Principles</div>
+    <div class="hero-right-num">5</div>
+    <ul class="hero-principles">
+      <li class="hero-principle-item">
+        <span class="principle-num">01</span>
+        <span class="principle-name">Leadership That Listens</span>
+        <span class="principle-arabic">المجلس</span>
+      </li>
+      <li class="hero-principle-item">
+        <span class="principle-num">02</span>
+        <span class="principle-name">The Welcome Before The Question</span>
+        <span class="principle-arabic">الدّلّة</span>
+      </li>
+      <li class="hero-principle-item">
+        <span class="principle-num">03</span>
+        <span class="principle-name">No One Struggles Alone</span>
+        <span class="principle-arabic">الفريج</span>
+      </li>
+      <li class="hero-principle-item">
+        <span class="principle-num">04</span>
+        <span class="principle-name">Equal Under One Sky</span>
+        <span class="principle-arabic">النظام</span>
+      </li>
+      <li class="hero-principle-item">
+        <span class="principle-num">05</span>
+        <span class="principle-name">Every Person On The Boat Matters</span>
+        <span class="principle-arabic">النخودة</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- INTRO -->
+<div class="intro-band reveal">
+  <div class="intro-band-inner">
+    <div>
+      <div class="intro-band-label">The Foundation</div>
+      <h2 class="intro-band-heading">Built long before<br><em>modern management.</em></h2>
+    </div>
+    <p class="intro-band-body">
+      The Arabs discovered these principles centuries ago — and most modern organizations have forgotten them.
+      They are not theories. They are not frameworks. They are <strong>the way great leaders have always led</strong> —
+      with accessibility, dignity, community, fairness, and personal responsibility.
+      Every one of them applies directly to how we lead at KIN Home today.
+    </p>
+  </div>
+</div>
+
+<!-- PRINCIPLES -->
+<section id="principles" class="principles-section">
+  <div class="principles-inner">
+
+    <div class="principles-header reveal">
+      <div class="principles-header-left">
+        <div class="principles-eyebrow">The Five Principles</div>
+        <div style="display:flex; align-items:baseline; gap:24px; flex-wrap:wrap;">
+          <h2 class="principles-title">The Leadership Code</h2>
+          <div style="display:flex; flex-direction:column; align-items:flex-start; gap:2px;">
+            <span style="font-family:'Playfair Display',serif; font-size:clamp(22px,3vw,36px); font-style:italic; color:var(--green-700); line-height:1;">قانون القيادة</span>
+            <span style="font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--green-500);">Qanoon Al-Qiyadah</span>
+          </div>
+        </div>
+      </div>
+      <div class="principles-count">5</div>
+    </div>
+
+    <!-- 01 -->
+    <div class="principle-card reveal">
+      <div class="principle-card-left" data-num="01">
+        <div class="principle-card-num">01 / 05</div>
+        <div>
+          <div class="principle-card-arabic-word">المجلس</div>
+          <div class="principle-card-transliteration">Al Majlis</div>
+        </div>
+      </div>
+      <div class="principle-card-right">
+        <h3 class="principle-card-title">Leadership That Listens</h3>
+        <p class="principle-card-original">
+          "A tradition where any person — merchant, fisherman, stranger — could sit with the ruler. No appointment. No closed door. Power that hides is power that fails. Governance was built on accessibility, not authority."
+        </p>
+        <p class="principle-card-body">
+          The most dangerous thing a leader can do is become <strong>unavailable.</strong>
+          When your team stops bringing you their real problems, it isn't because the problems went away —
+          it's because they stopped believing you'd do anything about them.
+          <strong>Great leaders are reachable. Great leaders listen first.</strong>
+          Your door being open isn't a policy. It's a signal about who you are.
+        </p>
+        <div class="application-tag">Ask yourself: Does your team bring you their real problems — or just the safe ones?</div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="principle-card reveal">
+      <div class="principle-card-left" data-num="02">
+        <div class="principle-card-num">02 / 05</div>
+        <div>
+          <div class="principle-card-arabic-word">الدّلّة</div>
+          <div class="principle-card-transliteration">Al Dallah</div>
+        </div>
+      </div>
+      <div class="principle-card-right">
+        <h3 class="principle-card-title">The Welcome Before The Question</h3>
+        <p class="principle-card-original">
+          "You pour coffee before you ask a guest's name. Dignity first, business later. The guest is honoured before they've earned it — because belonging isn't something you prove. It's something you're given."
+        </p>
+        <p class="principle-card-body">
+          People perform at their best when they feel they <strong>belong before they've proven themselves.</strong>
+          Leaders who withhold warmth until performance is earned create teams that are
+          anxious, guarded, and transactional.
+          The best cultures make people feel valued from day one — <strong>not after their first big win.</strong>
+          Culture is set by how you treat people before they've earned it.
+        </p>
+        <div class="application-tag">Ask yourself: Do new people on your team feel welcomed or on trial?</div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="principle-card reveal">
+      <div class="principle-card-left" data-num="03">
+        <div class="principle-card-num">03 / 05</div>
+        <div>
+          <div class="principle-card-arabic-word">الفريج</div>
+          <div class="principle-card-transliteration">Al Fareej</div>
+        </div>
+      </div>
+      <div class="principle-card-right">
+        <h3 class="principle-card-title">No One Struggles Alone</h3>
+        <p class="principle-card-original">
+          "The traditional neighbourhood where elders resolved disputes before they grew, neighbours watched each other's children, and no family struggled alone. A city is only as civilised as its smallest community."
+        </p>
+        <p class="principle-card-body">
+          A team is only as strong as the person it lets struggle in silence.
+          The best organizations <strong>surface problems early</strong> — before they become crises.
+          Leaders who build real community create environments where people
+          ask for help without shame and give help without being asked.
+          <strong>Your team's health is your responsibility.</strong>
+          If someone on your team is drowning, that's on the leader — not just them.
+        </p>
+        <div class="application-tag">Ask yourself: Who on your team is struggling right now that you haven't checked on?</div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="principle-card reveal">
+      <div class="principle-card-left" data-num="04">
+        <div class="principle-card-num">04 / 05</div>
+        <div>
+          <div class="principle-card-arabic-word">النظام</div>
+          <div class="principle-card-transliteration">Al Nizam</div>
+        </div>
+      </div>
+      <div class="principle-card-right">
+        <h3 class="principle-card-title">Equal Under One Sky</h3>
+        <p class="principle-card-original">
+          "A civilised city doesn't ask where you pray, what language you speak, or where you were born. The same rules are applied to everyone, whether you arrived yesterday or a generation ago. You are not defined by your origin, but protected by a shared civic order."
+        </p>
+        <p class="principle-card-body">
+          Nothing destroys culture faster than <strong>inconsistent standards.</strong>
+          When top performers get a different set of rules, when tenure earns exemptions,
+          when relationships determine accountability — the team notices.
+          <strong>Every single time.</strong>
+          The best leaders hold everyone to the same standard because they understand
+          that fairness isn't just about policy — it's about trust.
+          And without trust, you don't have a team. You have employees.
+        </p>
+        <div class="application-tag">Ask yourself: Are you holding your best people to the same standard as everyone else?</div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="principle-card reveal">
+      <div class="principle-card-left" data-num="05">
+        <div class="principle-card-num">05 / 05</div>
+        <div>
+          <div class="principle-card-arabic-word">النخودة</div>
+          <div class="principle-card-transliteration">Al Nakhuda</div>
+        </div>
+      </div>
+      <div class="principle-card-right">
+        <h3 class="principle-card-title">Every Person On The Boat Matters</h3>
+        <p class="principle-card-original">
+          "The pearl diving captain was personally responsible for every diver's life and fair share. No contracts — just a name, a crew, and a code. One person's failure was the whole boat's loss. Honour wasn't rank. It was responsibility."
+        </p>
+        <p class="principle-card-body">
+          Your title doesn't make you a leader. <strong>Your responsibility does.</strong>
+          Every person on your team is your responsibility — their growth, their results,
+          their wellbeing, their future. If they fail, you ask what you could have done differently.
+          If they win, you celebrate them first.
+          <strong>Honor at KIN Home isn't about rank — it's about how personally you take
+          the success of the people counting on you.</strong>
+        </p>
+        <div class="application-tag">Ask yourself: Do you feel personally responsible for every person on your team?</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section id="reflection" class="reflection-section">
+  <div class="reflection-inner">
+    <div class="reflection-eyebrow reveal">Leadership Reflection</div>
+    <h2 class="reflection-title reveal">Five questions.<br><em>Answer them honestly.</em></h2>
+    <div class="reflection-grid">
+      <div class="reflection-item reveal">
+        <div class="reflection-item-num">Al Majlis · 01</div>
+        <div class="reflection-item-q">Does your team bring you their real problems?</div>
+        <div class="reflection-item-sub">Or have they learned it's safer to stay quiet?</div>
+      </div>
+      <div class="reflection-item reveal">
+        <div class="reflection-item-num">Al Dallah · 02</div>
+        <div class="reflection-item-q">Do people feel they belong before they've proven themselves?</div>
+        <div class="reflection-item-sub">Or do they feel like they're still earning their seat?</div>
+      </div>
+      <div class="reflection-item reveal">
+        <div class="reflection-item-num">Al Fareej · 03</div>
+        <div class="reflection-item-q">Who on your team is struggling right now?</div>
+        <div class="reflection-item-sub">And what have you done about it this week?</div>
+      </div>
+      <div class="reflection-item reveal">
+        <div class="reflection-item-num">Al Nizam · 04</div>
+        <div class="reflection-item-q">Are you holding everyone to the same standard?</div>
+        <div class="reflection-item-sub">Or are some people above the rules?</div>
+      </div>
+      <div class="reflection-item reveal">
+        <div class="reflection-item-num">Al Nakhuda · 05</div>
+        <div class="reflection-item-q">Do you feel personally responsible for your team's success?</div>
+        <div class="reflection-item-sub">Or are you waiting for them to earn your investment?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing-section">
+  <div class="closing-eyebrow reveal">The Standard</div>
+  <h2 class="closing-title reveal">These aren't new ideas.<br>We just <em>forgot them.</em></h2>
+  <p class="closing-body reveal">
+    The principles that built civilizations are the same ones that build great companies.
+    Accessible. Welcoming. Connected. Fair. Responsible.
+    That is what leadership at KIN Home looks like.
+  </p>
+  <a href="#principles" class="btn-green reveal">Back to the Principles</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">The Leadership Code</div>
+  <div class="footer-copy">© 2026 KIN Home · AD Call</div>
+  <div class="footer-credit">Designed by Taylor Burnett</div>
+</footer>
+<div style="text-align: center; padding: 16px; background: var(--gray-900); font-family: 'DM Sans', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.06);">
+  Created by Taylor Burnett
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
